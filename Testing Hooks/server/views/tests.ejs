@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - React Hooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="App">
+        <header class="App-header">
+            <div class="header-content">
+                <h1>React Hooks</h1>
+                <div class="status-indicator">
+                    <span class="status-dot <%= healthStatus %>"></span>
+                    <span><%= healthStatus === 'online' ? 'Online' : 'Offline' %></span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="App-nav">
+            <div class="nav-content">
+                <a href="/tests" class="nav-button <%= activeTab === 'tests' ? 'active' : '' %>">Testes</a>
+                <a href="/examples" class="nav-button <%= activeTab === 'examples' ? 'active' : '' %>">Exemplos</a>
+                <a href="/problems" class="nav-button <%= activeTab === 'problems' ? 'active' : '' %>">Problemas</a>
+            </div>
+        </nav>
+
+        <main class="App-main">
+            <div class="page-header">
+                <h1>Testes de Hooks</h1>
+                <p>Experimente e teste os principais React Hooks</p>
+            </div>
+
+            <div class="card">
+                <h3>useState - Contador</h3>
+                <p>Contador: <strong id="count-display">0</strong></p>
+                <button class="button" onclick="incrementCount()">Incrementar</button>
+                <button class="button" onclick="decrementCount()">Decrementar</button>
+                <button class="button button-secondary" onclick="resetCount()">Resetar</button>
+            </div>
+
+            <div class="card">
+                <h3>useEffect - Rastreamento de Renderizações</h3>
+                <p>Número de renderizações: <strong id="render-count">0</strong></p>
+                <div class="info">
+                    O useEffect está executando a cada renderização. Verifique o console do navegador.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>useRef - Referência de Elemento</h3>
+                <input
+                    id="test-input"
+                    type="text"
+                    class="input"
+                    placeholder="Digite algo..."
+                />
+                <button class="button" onclick="focusInput()">Focar no Input</button>
+            </div>
+
+            <div class="card">
+                <h3>useCallback - Otimização de Função</h3>
+                <p>Itens adicionados: <strong id="items-count">0</strong></p>
+                <ul id="items-list" style="margin: 1rem 0;"></ul>
+                <input
+                    id="item-input"
+                    type="text"
+                    class="input"
+                    placeholder="Digite um item..."
+                />
+                <button class="button" onclick="addItem()">Adicionar Item</button>
+            </div>
+
+            <div class="card">
+                <h3>useMemo - Cálculo Otimizado</h3>
+                <p>Resultado do cálculo (baseado no contador): <strong id="calculation-result">0</strong></p>
+                <div class="info">
+                    O cálculo só executa quando o contador muda, graças ao useMemo.
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

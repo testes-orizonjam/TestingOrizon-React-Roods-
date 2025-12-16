@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - React Hooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="App">
+        <header class="App-header">
+            <div class="header-content">
+                <h1>React Hooks</h1>
+                <div class="status-indicator">
+                    <span class="status-dot <%= healthStatus %>"></span>
+                    <span><%= healthStatus === 'online' ? 'Online' : 'Offline' %></span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="App-nav">
+            <div class="nav-content">
+                <a href="/tests" class="nav-button <%= activeTab === 'tests' ? 'active' : '' %>">Testes</a>
+                <a href="/examples" class="nav-button <%= activeTab === 'examples' ? 'active' : '' %>">Exemplos</a>
+                <a href="/problems" class="nav-button <%= activeTab === 'problems' ? 'active' : '' %>">Problemas</a>
+            </div>
+        </nav>
+
+        <main class="App-main">
+            <div class="page-header">
+                <h1>Solução de Problemas</h1>
+                <p>Identifique e resolva problemas comuns ao trabalhar com React Hooks</p>
+            </div>
+
+            <div class="problems-grid">
+                <% problems.forEach(problem => { %>
+                    <div class="problem-card-compact" 
+                         data-problem-id="<%= problem.id %>">
+                        <h3><%= problem.title %></h3>
+                        <p><%= problem.solution %></p>
+                        <div class="problem-meta">
+                            <span class="problem-badge">Problema #<%= problem.id %></span>
+                            <button class="button problem-button" 
+                                    data-problem-id="<%= problem.id %>"
+                                    type="button">
+                                <span class="button-text">Marcar como Resolvido</span>
+                            </button>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+            <div class="card">
+                <h3>Dicas Adicionais</h3>
+                <ul>
+                    <li>Sempre use as dependências corretas nos hooks</li>
+                    <li>Nunca use hooks dentro de loops, condições ou funções aninhadas</li>
+                    <li>Use React DevTools para debugar problemas de renderização</li>
+                    <li>Considere usar ESLint com eslint-plugin-react-hooks</li>
+                    <li>Teste seus hooks com @testing-library/react-hooks</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="problemModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Problema</h2>
+                <button class="modal-close" type="button" id="modalClose">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="button button-secondary" type="button" id="modalCloseFooter">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script id="problems-data" type="application/json"><%= JSON.stringify(problems) %></script>
+    <script>
+        window.problemsData = JSON.parse(document.getElementById('problems-data').textContent);
+    </script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

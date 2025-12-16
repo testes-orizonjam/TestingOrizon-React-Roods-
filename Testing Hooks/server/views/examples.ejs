@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - React Hooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="App">
+        <header class="App-header">
+            <div class="header-content">
+                <h1>React Hooks</h1>
+                <div class="status-indicator">
+                    <span class="status-dot <%= healthStatus %>"></span>
+                    <span><%= healthStatus === 'online' ? 'Online' : 'Offline' %></span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="App-nav">
+            <div class="nav-content">
+                <a href="/tests" class="nav-button <%= activeTab === 'tests' ? 'active' : '' %>">Testes</a>
+                <a href="/examples" class="nav-button <%= activeTab === 'examples' ? 'active' : '' %>">Exemplos</a>
+                <a href="/problems" class="nav-button <%= activeTab === 'problems' ? 'active' : '' %>">Problemas</a>
+            </div>
+        </nav>
+
+        <main class="App-main">
+            <div class="page-header">
+                <h1>Exemplos Avançados</h1>
+                <p>Explore exemplos práticos de hooks avançados</p>
+            </div>
+
+            <div class="card">
+                <h3>useContext - Tema</h3>
+                <p>Tema atual: <strong id="theme-display">light</strong></p>
+                <button class="button" onclick="toggleTheme()">Alternar Tema</button>
+            </div>
+
+            <div class="card">
+                <h3>useReducer - Gerenciamento de Estado Complexo</h3>
+                <p>Contador: <strong id="reducer-count">0</strong></p>
+                <button class="button" onclick="dispatchAction('increment')">Incrementar</button>
+                <button class="button" onclick="dispatchAction('decrement')">Decrementar</button>
+                <button class="button button-secondary" onclick="dispatchAction('reset')">Resetar</button>
+                <div class="info" style="margin-top: 1rem;">
+                    <strong>Histórico:</strong>
+                    <ul id="history-list" style="margin-top: 0.5rem;"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Custom Hook - useLocalStorage</h3>
+                <input
+                    id="name-input"
+                    type="text"
+                    class="input"
+                    placeholder="Digite seu nome (salvo no localStorage)"
+                />
+                <p style="margin-top: 1rem;">Valor salvo: <strong id="saved-name">Nenhum</strong></p>
+                <div class="info">
+                    Recarregue a página - o valor será mantido graças ao localStorage!
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>
